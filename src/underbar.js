@@ -76,8 +76,10 @@
     var result = -1;
 
     _.each(array, function(item, index) {
-      if (item === target && result === -1) {
-        result = index;
+      //compare with if statement item with target with === true
+      if (item === target) {
+        //if result = -1 set result = index, else set index = index
+       result === -1 ? result = index : index = index;
       }
     });
 
