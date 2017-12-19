@@ -198,13 +198,42 @@
   //     return total + number * number;
   //   }); // should be 5, regardless of the iterator function passed in
   //          No accumulator is given so the first element is used.
+
+  
   _.reduce = function(collection, iterator, accumulator) {
-  };
+//define variable equal true
+    var firstRun = true;
+//for each item in the collection array pass into the function
+      _.each(collection, function(item) {
+  //if the variable and the accumulator equal undefined
+          if (firstRun && accumulator === undefined) {
+            //set the item equal to the accumulator
+              accumulator = item;
+          } else {
+//else pass the accumulator and item in the iterator function and set it equal to the accumulator
+              accumulator = iterator(accumulator, item);
+            }
+        //set the variable equal to false
+          firstRun = false;
+        });
+//return the accumulator
+    return accumulator;
+      };
 
   // Determine if the array or object contains a given value (using `===`).
   _.contains = function(collection, target) {
     // TIP: Many iteration problems can be most easily expressed in
     // terms of reduce(). Here's a freebie to demonstrate!
+
+    //define variable equaling true
+    //for each item in the collection array pass into the given function
+      //if the defined variable and the accumulator equal undefined
+        //set the item equal to the accumulator
+      //else pass the accumulator and item in the iterator function and set it equal to the accumulator
+    //set the variable equal to false
+    //return the accumulator
+
+
     return _.reduce(collection, function(wasFound, item) {
       if (wasFound) {
         return true;
