@@ -106,6 +106,13 @@
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
     let result = [];
+    //define an empty array
+    //define a variable that will store object-like data type
+    //iterate through the given array
+      //add each item into the Set
+    //for each item in the Set
+      //push the item into the defined array
+    //return the defined array
     //use for each item in the array
     _.each(collection, function(item){
       //if the item not passed the test, return all array defined before.
@@ -119,17 +126,38 @@
   };
 
   // Produce a duplicate-free version of the array.
-  _.uniq = function(array, index, self) {
-      return self.indexOf(array) === index;
-
-  };
-
+  _.uniq = function(array) {
+    //define an empty array
+    //define a variable that will store object-like data type
+    //iterate through the given array
+      //add each item into the Set
+    //for each item in the Set
+      //push the item into the defined array
+    //return the defined array
+    var newArray = [];
+    var mySet = new Set();
+    for(var i = 0; i < array.length; i ++){
+    mySet.add(array[i]);
+  }
+    mySet.forEach(function(value){
+      newArray.push(value);
+  });
+  return newArray;
+};
 
   // Return the results of applying an iterator to each element.
   _.map = function(collection, iterator) {
     // map() is a useful primitive iteration function that works a lot
     // like each(), but in addition to running the operation on all
-    // the members, it also maintains an array of results.
+
+    //create newArray and iterate on collection for each element.
+    var newArray = [];
+      for (var i = 0; i < collection.length; i++) {
+          newArray.push(iterator(collection[i]));
+  }
+  //return the results of iteration
+  return newArray;
+
   };
 
   /*
