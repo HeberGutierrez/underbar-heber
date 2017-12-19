@@ -119,7 +119,9 @@
   };
 
   // Produce a duplicate-free version of the array.
-  _.uniq = function(array) {
+  _.uniq = function(array, index, self) {
+      return self.indexOf(array) === index;
+
   };
 
 
