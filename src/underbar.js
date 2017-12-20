@@ -199,7 +199,7 @@
   //   }); // should be 5, regardless of the iterator function passed in
   //          No accumulator is given so the first element is used.
 
-
+  
   _.reduce = function(collection, iterator, accumulator) {
 //define variable equal true
     var firstRun = true;
@@ -246,14 +246,6 @@
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
     // TIP: Try re-using reduce() here.
-    var iterator=iterator || _.identity;
-   return _.reduce(collection, function(test, val) {
-     if (test) {
-       return !!iterator(val);
-     } else {
-       return false;
-     }
-   }, true);
   };
 
   // Determine whether any of the elements pass a truth test. If no iterator is
