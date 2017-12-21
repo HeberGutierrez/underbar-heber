@@ -352,7 +352,16 @@
   // _.memoize should return a function that, when called, will check if it has
   // already computed the result for the given argument and return that value
   // instead if possible.
-  _.memoize = function(func) {
+  _.memoize = function(func, hasher) {
+  return function(){
+    var answers = {};
+      var args=Array.prototype.slice.lcall(arguments);
+      if(answers[args]===undefined) {
+        answers[args]=func.apply(this, args);
+      }
+      return answers[args];
+    }
+
   };
 
   // Delays a function for the given number of milliseconds, and then calls
@@ -362,8 +371,17 @@
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
   _.delay = function(func, wait) {
+    var args=Array.prototype.slice.call(arguments, 2);
+    setTimeout(function() {
+      func.apply(this, args);
+    }, wait);
+
   };
 
+/*  var args=Array.prototype.slice.call(arguments, 2);
+    setTimeout(function() {
+      func.apply(this, args);
+    }, wait);*/
 
   /**
    * ADVANCED COLLECTION OPERATIONS
@@ -376,9 +394,22 @@
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
+
   };
 
+/* var newArray=array.slice(0);
+    var temporaryValue;
+    var randomIndex;
 
+    for (var index = newArray.length; index>0; index--) {
+      randomIndex = Math.floor(Math.random() * index);
+
+      temporaryValue = newArray[index];
+      newArray[index] = newArray[randomIndex];
+      newArray[randomIndex] = temporaryValue;
+    }
+
+    return newArray;*/
   /**
    * ADVANCED
    * =================
