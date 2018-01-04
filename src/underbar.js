@@ -352,56 +352,42 @@
   // _.memoize should return a function that, when called, will check if it has
   // already computed the result for the given argument and return that value
   // instead if possible.
-<<<<<<< HEAD
   _.memoize = function(func) {
     var answers = {};
 
+   return function() {
+     var arg = JSON.stringify(arguments);
+     if (!answers[arg]) {
+       answers[arg] = func.apply(this, arguments);
+     }
 
-return function() {
- var arg = JSON.stringify(arguments);
- if (!answers[arg]) {
-   answers[arg] = func.apply(this, arguments);
- }
+     return answers[arg];
+    };
+   };
 
- return answers[arg];
-};
 
 //JASON example
-/*let alreadyCalled = {};
-let result;
-return function() {
- let functionStr = '';
- functionStr += func.toString();
- for( var i = 0; i < arguments.length; i++){
-   functionStr += arguments[i].toString();
- }
- if (alreadyCalled[functionStr] === undefined) {
-   // TIP: .apply(this, arguments) is the standard way to pass on all of the
-   // infromation from one function call to another.
-   result = func.apply(this, arguments);
-   alreadyCalled[functionStr] = result;
-   return result;
- }else {
-   return alreadyCalled[functionStr];
- }
- // The new function always returns the originally computed result.
-};
-};*/
-  };
-=======
-  _.memoize = function(func, hasher) {
-  return function(){
-    var answers = {};
-      var args=Array.prototype.slice.lcall(arguments);
-      if(answers[args]===undefined) {
-        answers[args]=func.apply(this, args);
-      }
-      return answers[args];
-    }
+   /*let alreadyCalled = {};
+   let result;
+   return function() {
+     let functionStr = '';
+     functionStr += func.toString();
+     for( var i = 0; i < arguments.length; i++){
+       functionStr += arguments[i].toString();
+     }
+     if (alreadyCalled[functionStr] === undefined) {
+       // TIP: .apply(this, arguments) is the standard way to pass on all of the
+       // infromation from one function call to another.
+       result = func.apply(this, arguments);
+       alreadyCalled[functionStr] = result;
+       return result;
+     }else {
+       return alreadyCalled[functionStr];
+     }
+     // The new function always returns the originally computed result.
+   };
+ };*/
 
-  };
-
->>>>>>> c408749ad54e3fadd7d3ef1b82e2fb6d26328759
   // Delays a function for the given number of milliseconds, and then calls
   // it with the arguments supplied.
   //
@@ -432,30 +418,28 @@ return function() {
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
-<<<<<<< HEAD
+    // Implementation based on the Knuth Algorithm:
+      // http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm
+      var clonedArary = array.slice();
+      var shuffled = [];
+      var randomIndex;
+      var temp;
+      var last;
+
+      for (last = clonedArary.length - 1; last >= 0; last--) {
+        temp = clonedArary[last];
+        randomIndex = Math.floor(Math.random() * (last));
+        clonedArary[last] = clonedArary[randomIndex];
+        clonedArary[randomIndex] = temp;
+        shuffled.push(clonedArary.pop());
+      }
+      return shuffled;
+
       // Simpler version using the native sort method
       // where shuffle can be seen as "randomly sorting"
       // return array.slice().sort(function() {return 0.5 - Math.random()});
   };
 
-=======
-
-  };
-
-/* var newArray=array.slice(0);
-    var temporaryValue;
-    var randomIndex;
-
-    for (var index = newArray.length; index>0; index--) {
-      randomIndex = Math.floor(Math.random() * index);
-
-      temporaryValue = newArray[index];
-      newArray[index] = newArray[randomIndex];
-      newArray[randomIndex] = temporaryValue;
-    }
-
-    return newArray;*/
->>>>>>> c408749ad54e3fadd7d3ef1b82e2fb6d26328759
   /**
    * ADVANCED
    * =================
