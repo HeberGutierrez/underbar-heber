@@ -352,8 +352,10 @@
   // _.memoize should return a function that, when called, will check if it has
   // already computed the result for the given argument and return that value
   // instead if possible.
+<<<<<<< HEAD
   _.memoize = function(func) {
     var answers = {};
+
 
 return function() {
  var arg = JSON.stringify(arguments);
@@ -386,6 +388,20 @@ return function() {
 };
 };*/
   };
+=======
+  _.memoize = function(func, hasher) {
+  return function(){
+    var answers = {};
+      var args=Array.prototype.slice.lcall(arguments);
+      if(answers[args]===undefined) {
+        answers[args]=func.apply(this, args);
+      }
+      return answers[args];
+    }
+
+  };
+
+>>>>>>> c408749ad54e3fadd7d3ef1b82e2fb6d26328759
   // Delays a function for the given number of milliseconds, and then calls
   // it with the arguments supplied.
   //
@@ -416,11 +432,30 @@ return function() {
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
+<<<<<<< HEAD
       // Simpler version using the native sort method
       // where shuffle can be seen as "randomly sorting"
       // return array.slice().sort(function() {return 0.5 - Math.random()});
   };
 
+=======
+
+  };
+
+/* var newArray=array.slice(0);
+    var temporaryValue;
+    var randomIndex;
+
+    for (var index = newArray.length; index>0; index--) {
+      randomIndex = Math.floor(Math.random() * index);
+
+      temporaryValue = newArray[index];
+      newArray[index] = newArray[randomIndex];
+      newArray[randomIndex] = temporaryValue;
+    }
+
+    return newArray;*/
+>>>>>>> c408749ad54e3fadd7d3ef1b82e2fb6d26328759
   /**
    * ADVANCED
    * =================
