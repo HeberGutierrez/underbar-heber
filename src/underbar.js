@@ -478,23 +478,90 @@
   // Example:
   // _.zip(['a','b','c','d'], [1,2,3]) returns [['a',1], ['b',2], ['c',3], ['d',undefined]]
   _.zip = function() {
-  };
 
+
+  };
+/* var results=[];
+    var args=Array.prototype.slice.call(arguments);
+    var max=0;
+    _.each(args, function(arr) {
+      arr.length > max ? max=arr.length : null;
+    });
+    _.each(args, function(arr) {
+      for (var i=0; i<max; i++) {
+        if (results[i]===undefined) {
+          results.push([]);
+        }
+        results[i].push(arr[i]);
+      }
+    });
+
+    return results;
+*/
   // Takes a multidimensional array and converts it to a one-dimensional array.
   // The new array should contain all elements of the multidimensional array.
   //
   // Hint: Use Array.isArray to check if something is an array
   _.flatten = function(nestedArray, result) {
+    var result=[];
+
+    var extractArray = function(arrays, result) {
+      _.each(arrays, function(arr) {
+        if (Array.isArray(arr)) {
+          extractArray(arr, result);
+        } else {
+          result.push(arr);
+        }
+      });
+    };
+    extractArray(nestedArray, result);
+    return result;
   };
 
   // Takes an arbitrary number of arrays and produces an array that contains
   // every item shared between all the passed-in arrays.
   _.intersection = function() {
+    /*  var argumentsArray = Array.prototype.slice.call(arguments);
+
+    var result = [];
+
+    _.each(argumentsArray[0], function(item) {
+        var isShared = false;
+
+      for (var i=1; i<argumentsArray.length; i++) {
+        _.each(argumentsArray[i], function(check) {
+          if (item === check) {
+            isShared = true;
+          }
+        });
+      }
+
+      if (isShared) {
+        result.push(item);
+      }
+
+    });
+
+    return result;*/
   };
 
   // Take the difference between one array and a number of other arrays.
   // Only the elements present in just the first array will remain.
   _.difference = function(array) {
+    /*  var args=Array.prototype.slice.call(arguments, 1);
+    var testArray=array.slice();
+    var tempArray=[];
+
+    _.each(args, function(arr) {
+      tempArray=[];
+      _.each(testArray, function(val, key) {
+        arr.indexOf(val)===-1 ? tempArray.push(val) : null;
+      });
+      testArray=tempArray.slice();
+    });
+
+    return testArray;
+*/
   };
 
   // Returns a function, that, when invoked, will only be triggered at most once
