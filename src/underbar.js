@@ -570,5 +570,18 @@
   // on this function.
   //
   // Note: This is difficult! It may take a while to implement.
-  _.throttle = function(func, wait) {};
+  _.throttle = function(func, wait) {
+    var monitor = false;
+
+    return function() {
+      if (monitor !== true) {
+        monitor = true;
+        func.apply(Array.prototype.slice.apply(arguments));
+
+        setTimeout(function() {
+          monitor = false;
+        }, wait);
+      }
+    };
+  };
 }());
